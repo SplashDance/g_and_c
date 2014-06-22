@@ -71,70 +71,73 @@ Hence, since we're dealing with *normalized* features, the values expressed are 
     --> standard deviation of Jerk along Z-dimension
 
 "tBodyGyro-mean()-X"
-    --> 
+    --> mean gyroscope reading along X-dimension (due to body)
 
 "tBodyGyro-mean()-Y"
-    -->
+    --> mean gyroscope reading along Y-dimension (due to body)
 
 "tBodyGyro-mean()-Z"
-    -->
+    --> mean gyroscope reading along Z-dimension (due to body)
 
 "tBodyGyro-std()-X"
-    -->
+    --> standard deviation of gyroscope's X-dimension (body) reading
 
 "tBodyGyro-std()-Y"
-    -->
+    --> standard deviation of gyroscope's Y-dimension (body) reading
 
 "tBodyGyro-std()-Z"
-    -->
+    --> standard deviation of gyroscope's Z-dimension (body) reading
 
 "tBodyGyroJerk-mean()-X"
-    -->
+    --> mean X-dimensional jerk (body) calculation from Gyroscope
 
 "tBodyGyroJerk-mean()-Y"
-    -->
+    --> mean Y-dimensional jerk (body) calculation from Gyroscope
 
 "tBodyGyroJerk-mean()-Z"
-    -->
+    --> mean Z-dimensional jerk (body) calculation from Gyroscope
 
 "tBodyGyroJerk-std()-X"
-    -->
+    --> standard deviation of X-dimensional jerk (body) gyroscopic calculation
 
 "tBodyGyroJerk-std()-Y"
-    -->
+    --> standard deviation of Y-dimensional jerk (body) gyroscopic calculation
 
 "tBodyGyroJerk-std()-Z"
-    -->
+    --> standard deviation of Z-dimensional jerk (body) gyroscopic calculation
 
 "tBodyAccMag-mean()"
-    -->
+    --> Overall magnitude of acceleration of body (mean)
 
 "tBodyAccMag-std()"
-    -->
+    --> Standard deviation of overall magnitude of acceleration of body
 
 "tGravityAccMag-mean()"
-    -->
+    --> Overall magnitude of acceleration due to gravity (mean)
 
 "tGravityAccMag-std()"
-    -->
+    --> Standard deviation of overall magnitude of acceleration due to gravity
 
 "tBodyAccJerkMag-mean()"
-    -->
+    --> Overall mean jerk magnitude due to body (as measured by Accelerometer)
 
 "tBodyAccJerkMag-std()"
-    -->
+    --> Overall standard deviation of jerk magnitude due to body (as measured by Accelerometer)
 
 "tBodyGyroMag-mean()"
-    -->
+    --> mean magnitude of body as measured by gyroscope
 
 "tBodyGyroMag-std()"
-    -->
+    --> standard deviation of magnitude of body as measured by gyroscope
 
 "tBodyGyroJerkMag-mean()"
-    -->
+    --> measure of mean jerk magnitude (attributable to the body) as measured by the gyroscope
 
 "tBodyGyroJerkMag-std()"
-    -->
+    --> measure of standard deviation of jerk magnitude (attributable to the body) as measured by the gyroscope
+    
+
+##### Note: Since the following refer to **Fast Fourier Transforms** applied to the raw data, it is best to consult the original text files (provided in the "Original Content" directory)
 
 "fBodyAcc-mean()-X"
     -->

@@ -7,20 +7,22 @@
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-
-
-
-
-
 ##### Elements of a *tidy data set*
 
 The script I've provided ensures that:
+
 1. Each variable measured is in its own column
 2. Different observations of that a given variable are all in a different rows.
 [Note: the next two elements--though important components of "tidy data"--do not pertain to this script, however]
 3. One table for each “kind” of variable 
 4. With multiple tables, they should include a column in the table that allows them to be linked.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+##### Explanation of **run_analysis.R** script
+
+*
+
+
   
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
