@@ -27,4 +27,4 @@ The script I've provided ensures that:
 ** The folder: "Original Content" provides the original descriptions from the UCI HAR Dataset--for explanations of some of the more complicated **features** (esp. those involving **Fast Fourier Transforms**), these original files should be sought out.
 
 
-[id]<https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>
+[id]: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
