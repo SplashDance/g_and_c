@@ -79,9 +79,10 @@ names(data)[1] <- "subject"
 names(data)[2] <- "activity"
 
 
-
+# Replaces activity integers with more descriptive names:
 activities <- c("walking.regular", "walking.upstairs", "walking.downstairs",
                 "sitting", "standing", "laying")
+# Re-casts the "activity" and "subject" columns as FACTORS:
 data$activity <- factor(data$activity, labels=activities)
 data$subject <- as.factor(data$subject)
 
@@ -95,3 +96,7 @@ names(data)[3:68] <- relevant.names
 tidy_data <- melt(data)
 # Casts into appropriate data frame:
 tidy_data <- dcast(tidy_data, subject + activity ~ variable, mean)
+
+# The following line can be un-commented if a written csv file of the
+# tidy data set is required:
+# write.table(tidy, file="tidy_data.txt", sep=',')
