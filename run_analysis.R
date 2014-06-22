@@ -6,7 +6,7 @@
 #    - create 2nd TIDY dataset with average of each variable
 #          for each activity and each subject.
 
-
+require(reshape2)
 setwd("~/Desktop/MOOCs/Coursera/Data Science/3. Getting and Cleaning Data/Course Project")
 
 
@@ -94,4 +94,4 @@ names(data)[3:68] <- relevant.names
 # Melts data into long data frame
 tidy_data <- melt(data)
 # Casts into appropriate data frame:
-tidy_data <- dcast(test, subject + activity ~ variable, mean)
+tidy_data <- dcast(tidy_data, subject + activity ~ variable, mean)
