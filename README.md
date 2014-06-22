@@ -19,8 +19,13 @@ The script I've provided ensures that:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ##### Explanation of **run_analysis.R** script
+Note: For convenience, all of my code is located in the **run_analysis.R** script. 
 
-*
+* In the first part of the file, my script constructs the appropriate paths to the various data sets.
+* In Part 2, I load the relevant **feature names** from the **features.txt** file and "*grep*" only those columns pertaining to the mean & standard deviation of the measurements
+* In Part 3, I load the relevant data sets and (via a somewhat convoluted set of steps) I perform the necessary row and column binding until I'm left with a single data.frame (where previously there were six).
+* Next, in Part 4, I provide "more readable" names for both the 6 activities as well as the various measurements taken. In addition, I re-classify the "activity" and "subject" columns as **factors**.
+* Lastly, in Part 5 I finish the "tidy data"-creating process by first "melting" the data.frame down (using Hadley Wickham's **reshape2** package) and then "re-casting" in an appropriate form.
 
 
   

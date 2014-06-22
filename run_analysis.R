@@ -7,7 +7,8 @@
 #          for each activity and each subject.
 
 require(reshape2)
-setwd("~/Desktop/MOOCs/Coursera/Data Science/3. Getting and Cleaning Data/Course Project")
+
+# setwd("~/Desktop/MOOCs/Coursera/Data Science/3. Getting and Cleaning Data/Course Project")
 
 
 current.path <- getwd()
@@ -63,6 +64,7 @@ for (i in y.paths){
     data.df <- rbind(data.df, temp)
 }
 data <- cbind(data.df, data)
+
 
 # Adds the subject data:
 subject.paths <- data.paths[5:6]
