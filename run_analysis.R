@@ -28,11 +28,19 @@ data.paths <- paste(path, data.files, sep='/')
 features.file <- paste(path, "features.txt", sep='/')
 features.table  <- read.table(file=features.file, nrows=561, 
                               stringsAsFactors=FALSE)
+
+
 # This greps the relevant columns:
 relevant <- grep("-mean\\(\\)|-std\\(\\)", features.table[,2])
+
+#### Note: Previously, I had used this line of code for my "grepping":
+# grep.idx <- grep(pattern='mean|std()', x=features.table$V2, ignore.case=TRUE)
+#### However, I changed this to the above line as suggested by multiple 
+#### students on the boards.
+
+
+
 relevant.cols <- features.table[relevant, ]
-
-
 # Combines the main data:
 X.paths <- data.paths[1:2]
 data.df <- data.frame()
