@@ -5,7 +5,7 @@
 * The file "run_analysis" includes the relevant code for "tidying" the data. Note: as per the instructions, the script assumes that the data set is already in the current working directory when run. Nevertheless, the dataset can be obtained via [this link][id].
 * This script requires the use of Hadley Wickham's **reshape2** package. Thus, you should install said package *before* running this script.
 
-
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 

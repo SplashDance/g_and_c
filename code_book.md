@@ -1,6 +1,6 @@
 #### CODEBOOK
 
-### Important note on UNITS:
+##### Important note on UNITS:
 As described in the original "README.txt" file (provided in the "Original Content" directory):
 
     Features are normalized and bounded within [-1,1].
