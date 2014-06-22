@@ -7,24 +7,13 @@
 #          for each activity and each subject.
 
 
-# As per the instructions, I am assuming that the Samsung data is in
-# the Current Working Directory when this script is run.
-# Nevertheless, the dataset can be obtained via [this link][id]
-# [id]<https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>
+setwd("~/Desktop/MOOCs/Coursera/Data Science/3. Getting and Cleaning Data/Course Project")
 
-#########Important!#########
-#  Note: The files are fixed width files with a fixed-width of 16.
-############################
-
-
-# setwd("./UCI HAR Dataset")
-num_subjects = 30
-m = 10299
-n = 561
 
 current.path <- getwd()
 data.directory.main <- "UCI HAR Dataset"
 path <- paste(current.path, data.directory.main, sep='/')
+
 
 ## PATHS to DATA FILES:
 data.types <- c("test", "train")
@@ -35,18 +24,16 @@ data.files <- paste(data.files, 'txt', sep='.')
 data.paths <- paste(path, data.files, sep='/')
 
 
-
 # Relevant features:
 features.file <- paste(path, "features.txt", sep='/')
 features.table  <- read.table(file=features.file, nrows=561, 
-                              stringsAsFactors=FALSE, sep=' ')
-# Grep the relevant columns:
-grep.idx <- grep(pattern='mean|std()', x=features.table$V2, ignore.case=TRUE)
-relevant.cols <- features.table[grep.idx, ]
+                              stringsAsFactors=FALSE)
+# This greps the relevant columns:
+relevant <- grep("-mean\\(\\)|-std\\(\\)", features.table[,2])
+relevant.cols <- features.table[relevant, ]
 
 
-
-
+# Combines the main data:
 X.paths <- data.paths[1:2]
 data.df <- data.frame()
 for (i in X.paths){
@@ -55,45 +42,48 @@ for (i in X.paths){
     data.df <- rbind(data.df, temp)
 }
 data <- data.df
-data <- data[, grep.idx]
-
-
-# y.paths <- data.paths[3:4]
-# data.df <- data.frame()
-# for (i in y.paths){
-#     temp <- read.table(file=i, header=FALSE, sep="",
-#                    stringsAsFactors=FALSE)
-#     data.df <- rbind(data.df, temp)
-# }
-# data <- cbind(data, data.df)
-
-
-# subject.paths <- data.paths[5:6]
-# data.df <- data.frame()
-# for (i in subject.paths){
-#     temp <- read.table(file=i, header=FALSE, sep="",
-#                    stringsAsFactors=FALSE)
-#     data.df <- rbind(data.df, temp)
-# }
-# data <- cbind(data, data.df)
+data <- data[, relevant]
 
 
 
+# Adds the "Activity" data:
+y.paths <- data.paths[3:4]
+data.df <- data.frame()
+for (i in y.paths){
+    temp <- read.table(file=i, header=FALSE, sep="",
+                   stringsAsFactors=FALSE)
+    data.df <- rbind(data.df, temp)
+}
+data <- cbind(data.df, data)
+
+# Adds the subject data:
+subject.paths <- data.paths[5:6]
+data.df <- data.frame()
+for (i in subject.paths){
+    temp <- read.table(file=i, header=FALSE, sep="",
+                   stringsAsFactors=FALSE)
+    data.df <- rbind(data.df, temp)
+}
+data <- cbind(data.df, data)
+
+
+names(data)[1] <- "subject"
+names(data)[2] <- "activity"
 
 
 
+activities <- c("walking.regular", "walking.upstairs", "walking.downstairs",
+                "sitting", "standing", "laying")
+data$activity <- factor(data$activity, labels=activities)
+data$subject <- as.factor(data$subject)
 
 
 
+relevant.names <- relevant.cols[, 2]
+names(data)[3:68] <- relevant.names
 
 
-
-
-# Generates "X_test" "y_test":
-paste(c('X_', 'y_'), c('test'), sep='')
-
-
-
-
-
-
+# Melts data into long data frame
+tidy_data <- melt(data)
+# Casts into appropriate data frame:
+tidy_data <- dcast(test, subject + activity ~ variable, mean)
