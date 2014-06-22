@@ -10,11 +10,10 @@ require(reshape2)
 
 # setwd("~/Desktop/MOOCs/Coursera/Data Science/3. Getting and Cleaning Data/Course Project")
 
-
+# PART 1 - Construct path to data sets:
 current.path <- getwd()
 data.directory.main <- "UCI HAR Dataset"
 path <- paste(current.path, data.directory.main, sep='/')
-
 
 ## PATHS to DATA FILES:
 data.types <- c("test", "train")
@@ -25,11 +24,11 @@ data.files <- paste(data.files, 'txt', sep='.')
 data.paths <- paste(path, data.files, sep='/')
 
 
+# Part 2 - Retrieve relevant features:
 # Relevant features:
 features.file <- paste(path, "features.txt", sep='/')
 features.table  <- read.table(file=features.file, nrows=561, 
                               stringsAsFactors=FALSE)
-
 
 # This greps the relevant columns:
 relevant <- grep("-mean\\(\\)|-std\\(\\)", features.table[,2])
@@ -38,10 +37,10 @@ relevant <- grep("-mean\\(\\)|-std\\(\\)", features.table[,2])
 # grep.idx <- grep(pattern='mean|std()', x=features.table$V2, ignore.case=TRUE)
 #### However, I changed this to the above line as suggested by multiple 
 #### students on the boards.
-
-
-
 relevant.cols <- features.table[relevant, ]
+
+
+# Part 3 - Combine data sets into a single data.frame:
 # Combines the main data:
 X.paths <- data.paths[1:2]
 data.df <- data.frame()
@@ -52,7 +51,6 @@ for (i in X.paths){
 }
 data <- data.df
 data <- data[, relevant]
-
 
 
 # Adds the "Activity" data:
@@ -77,28 +75,30 @@ for (i in subject.paths){
 data <- cbind(data.df, data)
 
 
+
+# Part 4 - Cleaning up data names / re-classifying as "factors":
+# Replaces activity integers with more descriptive names:
 names(data)[1] <- "subject"
 names(data)[2] <- "activity"
-
-
-# Replaces activity integers with more descriptive names:
 activities <- c("walking.regular", "walking.upstairs", "walking.downstairs",
                 "sitting", "standing", "laying")
-# Re-casts the "activity" and "subject" columns as FACTORS:
+# Re-classifying the "activity" and "subject" columns as FACTORS:
 data$activity <- factor(data$activity, labels=activities)
 data$subject <- as.factor(data$subject)
-
 
 
 relevant.names <- relevant.cols[, 2]
 names(data)[3:68] <- relevant.names
 
 
+# Part 5 - "Melting" and "Casting" -- the final step of the "tidy data" process
 # Melts data into long data frame
 tidy_data <- melt(data)
 # Casts into appropriate data frame:
 tidy_data <- dcast(tidy_data, subject + activity ~ variable, mean)
 
+
+
 # The following line can be un-commented if a written csv file of the
 # tidy data set is required:
-# write.table(tidy, file="tidy_data.txt", sep=',')
+write.table(tidy_data, file="tidy_data.txt", sep=',')
